@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content%}
+<h1>리뷰 목록</h1>
+<div>
+    <div class="d-flex justify-content-end">
+        <a href="{% url 'articels:new' %}" class="btn btn-primary">리뷰 작성</a>
+    </div>
+    <table class="table mt-3">
+        <thead>
+            <tr class="table-dark">
+                <th>리뷰 번호</th>
+                <th>리뷰 제목</th>
+                <th>작성 시간</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for re in review %}
+            <tr>
+                <td>
+                    {{ re.id }}
+                </td>
+                <td>
+                    <a href="{% url 'articels:detail' re.pk %}">
+                        {{ re.title }}
+                    </a>
+                </td>
+                <td>
+                    {{ re.created_at | date:'Y년 m월 d일' }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
